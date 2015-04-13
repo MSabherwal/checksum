@@ -1,18 +1,18 @@
-= Checksum_authentication
+#Checksum_authentication
 
 
 Checksum authentication contains a flask server that speaks json,
 Taking a url as input and returning that same url with a checksum of the 
 current url(query parameters included)
 
-= Routes
+##Routes
 
   POST '/createchecksum'
-  	-Data
+  	*Data
   		Type: application/json
   		Values:
   			{'url':'url_to_be_checksumed'}
-  	-Return value:
+  	*Return value:
   		-On Success:
   			Status_code: 200
   			Data:
@@ -27,11 +27,11 @@ current url(query parameters included)
   				{'error': 'some error message'}
 
   POST '/checkchecksum'
-  	-Data:
+  	*Data:
   		Type: application/json
   		Values:
   			{'callback_url': 'url_with_checksum'}
-  	-Return value:
+  	*Return value:
   		-On Success:
   			Status_code: 200
   			Data:
@@ -45,5 +45,5 @@ current url(query parameters included)
   			Data:
   				{'error': 'some error message'}
 
-=Running code
+#Running the code
 	#python checksum.py
