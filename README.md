@@ -7,43 +7,43 @@ current url(query parameters included)
 
 ##Routes
 
-  POST '/createchecksum'
-  	*Data
-  		Type: application/json
-  		Values:
+  * POST '/createchecksum'
+	* Data
+		* Type: application/json
+		* Values:
   			{'url':'url_to_be_checksumed'}
-  	*Return value:
-  		-On Success:
-  			Status_code: 200
-  			Data:
+  	* Return value:
+  		* On Success:
+  			* Status_code: 200
+  			* Data:
   				{'callback_url': 'url_with_checksum'}
-  		-On Failure
-  			Status_code: 400
-  			Data:
+  		* On Failure
+  			* Status_code: 400
+  			* Data:
   				{'error':'error description'}
-  		-On Error:
-  			Status_code: 400
-  			Data:
+  		* On Error:
+  			* Status_code: 400
+  			* Data:
   				{'error': 'some error message'}
 
-  POST '/checkchecksum'
-  	*Data:
-  		Type: application/json
-  		Values:
+  * POST '/checkchecksum'
+  	* Data:
+  		* Type: application/json
+  		* Values:
   			{'callback_url': 'url_with_checksum'}
-  	*Return value:
-  		-On Success:
-  			Status_code: 200
-  			Data:
+  	* Return value:
+  		* On Success:
+  			* Status_code: 200
+  			* Data:
   				{'status': 'Valid'}
-  		-On Failure:
-  			Status_code: 400
-  			Data:
+  		* On Failure:
+  			* Status_code: 400
+  			* Data:
   				{'status':'Invalid'}
-  		-On Error:
-  			Status_code: 400
-  			Data:
+  		* On Error:
+  			* Status_code: 400
+  			* Data:
   				{'error': 'some error message'}
 
-#Running the code
-	#python checksum.py
+##Running the code
+	`python checksum.py`
