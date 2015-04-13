@@ -46,4 +46,4 @@ current url(query parameters included)
   				{'error': 'some error message'}
 
 ##Running the code
-	`python checksum.py`
+	python checksum.py
