@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 SECRET_KEY = os.urandom(20) #For now, use random secret_key
 
-#/createchecksum verifies
+#/createchecksum takes a url as input,and returns the url with a checksum
 @app.route("/createchecksum",methods=["POST"])
 def create_check_sum():
 	try:
@@ -30,9 +30,7 @@ def create_check_sum():
 	
 	final_url = add_checksum(callback_url,signature)
 
-	
-	
-	return jsonify({"callback_url":final_url})
+	return jsonify({"callback_url":final_url}),200
 
 @app.route("/checkchecksum",methods=["POST"])
 def check_check_sum():
@@ -47,7 +45,7 @@ def check_check_sum():
 	try:
 		clean_callback,checksum = callback_without_checksum(callback_url)
 	except KeyError:
-		return jsonify({'error':'no checksum in url' }),400
+		return jsonify({'error':'no checksum in callback_url' }),400
 	#recreate checksum
 	recreate_checksum = create_signature(clean_callback)
 	if recreate_checksum == checksum:
