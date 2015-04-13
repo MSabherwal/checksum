@@ -32,6 +32,7 @@ def create_check_sum():
 
 	return jsonify({"callback_url":final_url}),200
 
+#/checkchecksum validates the checksum to verify it is valid
 @app.route("/checkchecksum",methods=["POST"])
 def check_check_sum():
 	try:
@@ -53,7 +54,7 @@ def check_check_sum():
 	else:
 		return jsonify({"status":"Invalid"}),400
 	
-
+#generate hmac from secret_key and url, then converst to base64
 def create_signature(callback_url):
 	digest = hmac.new(SECRET_KEY, msg=callback_url, digestmod=hashlib.sha256).digest()
 	
@@ -61,6 +62,7 @@ def create_signature(callback_url):
 	signature = base64.b64encode(digest)
 	return signature
 
+#adds checksum to base url
 def add_checksum(callback_url,signature):
 	url_parts = list(urlparse.urlparse(callback_url))
 	query = dict(urlparse.parse_qsl(url_parts[4]))
@@ -68,6 +70,7 @@ def add_checksum(callback_url,signature):
 	url_parts[4] = urllib.urlencode(query)
 	return urlparse.urlunparse(url_parts)
 
+#takes the callback_url and ruturns the url without checksum and checksum
 def callback_without_checksum(callback_url):
 	url_parts = list(urlparse.urlparse(callback_url))
 	query = dict(urlparse.parse_qsl(url_parts[4]))

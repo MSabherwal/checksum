@@ -47,3 +47,6 @@ current url(query parameters included)
 
 ##Running the code
 	python checksum.py
+
+##Tests
+	python checksum_test.py
